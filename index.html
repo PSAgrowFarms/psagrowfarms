@@ -107,6 +107,95 @@
     }
     .nav-cta:hover { opacity: .85; }
 
+  /* ── GALLERY SECTION ─────────────────────────────────── */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .photo-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .28s, box-shadow .28s;
+  }
+  .photo-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(44,95,45,.18);
+  }
+
+  /* Grid sizing */
+  .g-main { grid-column: span 2; height: 340px; }
+  .g-side { height: 340px; }
+  .g-bot  { height: 225px; }
+
+  /* Placeholder base */
+  .photo-ph {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px;
+  }
+
+  /* Placeholder colour themes */
+  .ph-1 { background: linear-gradient(145deg, #1A3A1A 0%, #2C5F2D 100%); }
+  .ph-2 { background: linear-gradient(145deg, #3D2C10 0%, #9B6E20 100%); }
+  .ph-3 { background: linear-gradient(145deg, #2C5F2D 0%, #4A7A30 100%); }
+  .ph-4 { background: linear-gradient(145deg, #1A3A1A 0%, #3A6B2A 100%); }
+  .ph-5 { background: linear-gradient(145deg, #4A7A30 0%, #5A8A3C 100%); }
+
+  /* Placeholder icon circle */
+  .ph-icon-wrap {
+    width: 68px; height: 68px;
+    background: rgba(255,255,255,.12);
+    border: 1.5px solid rgba(255,255,255,.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px; margin-bottom: 6px;
+  }
+  .ph-label { color: rgba(255,255,255,.8); font-size: 13px; font-weight: 700; }
+  .ph-sub   { color: rgba(255,255,255,.38); font-size: 10.5px; font-style: italic; }
+
+  /* Hover caption overlay */
+  .photo-cap {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.72) 0%, transparent 55%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 20px 20px 18px;
+    opacity: 0; transition: opacity .3s;
+  }
+  .photo-item:hover .photo-cap { opacity: 1; }
+  .photo-cap h4 { color: #fff; font-size: 16px; font-weight: 800; margin-bottom: 3px; }
+  .photo-cap p  { color: rgba(255,255,255,.78); font-size: 12px; }
+
+  /* Real photo img tag (once you replace placeholder) */
+  .photo-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+
+  /* Bottom note */
+  .gallery-note {
+    text-align: center; margin-top: 22px;
+    font-size: 12px; color: #888; font-style: italic;
+  }
+  .gallery-note code {
+    background: #eef5e8; color: #2C5F2D;
+    padding: 1px 7px; border-radius: 4px;
+    font-size: 11px; font-style: normal;
+  }
+
+  /* ── Responsive ────────────────────────────────────────── */
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .g-main { grid-column: span 2; height: 260px; }
+    .g-side { height: 220px; }
+    .g-bot  { height: 190px; }
+  }
+  @media (max-width: 600px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .g-main { grid-column: span 1; height: 220px; }
+  }
+    
     /* ── HERO ─────────────────────────────────────────────────────── */
     .hero {
       min-height: 92vh;
@@ -416,6 +505,7 @@
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#coverage">Coverage</a></li>
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#order">Order</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -570,6 +660,91 @@
       </div>
     </div>
   </section>
+
+  <section style="padding: 80px 0;" id="gallery">
+  <div style="max-width:1140px; margin:0 auto; padding:0 24px;">
+
+    <!-- Section header -->
+    <span style="display:inline-block; background:#97BC62; color:#fff; font-size:12px;
+                 font-weight:700; padding:3px 12px; border-radius:20px;
+                 text-transform:uppercase; letter-spacing:.05em; margin-bottom:14px;">Our Farm</span>
+    <h2 style="font-size:clamp(26px,4vw,38px); font-weight:800; color:#2C5F2D;
+               margin-bottom:12px; line-height:1.2;">Life at PS AgrowFarms</h2>
+    <p style="font-size:16px; color:#555; max-width:680px; margin-bottom:48px;">
+      Wide open paddocks, happy free-range turkeys, and the natural beauty of our farm in Kuantan, Pahang.
+    </p>
+
+    <!-- Photo grid -->
+    <section class="section" id="gallery">
+    <div class="gallery-grid">
+
+      <!-- PHOTO 1: Large — Farm entrance / aerial -->
+      <!-- To add your photo: replace <div class="photo-ph ph-1">...</div> with <img src="your-photo.jpg"> -->
+      <div class="photo-item g-main">
+        <div class="photo-ph ph-1">
+          <div class="ph-icon-wrap">📸</div>
+          <p class="ph-label">Farm Entrance &amp; Paddocks</p>
+          <span class="ph-sub">Add your farm photo here</span>
+        </div>
+        <div class="photo-cap">
+          <h4>Our Farm</h4>
+          <p>Kuantan, Pahang, Malaysia</p>
+        </div>
+      </div>
+
+      <!-- PHOTO 2: Side — Turkey flock -->
+      <div class="photo-item g-side">
+        <div class="photo-ph ph-2">
+          <div class="ph-icon-wrap">🦃</div>
+          <p class="ph-label">Our Turkey Flock</p>
+          <span class="ph-sub">Add your turkey photo here</span>
+        </div>
+        <div class="photo-cap">
+          <h4>Free-Range Flock</h4>
+          <p>Happy &amp; healthy birds</p>
+        </div>
+      </div>
+
+      <!-- PHOTO 3: Bottom — Turkey close-up -->
+      <div class="photo-item g-bot">
+        <div class="photo-ph ph-3">
+          <div class="ph-icon-wrap">🦃</div>
+          <p class="ph-label">Turkey Close-Up</p>
+          <span class="ph-sub">Add photo here</span>
+        </div>
+        <div class="photo-cap">
+          <h4>Premium Quality Birds</h4>
+          <p>Healthy &amp; well-raised</p>
+        </div>
+      </div>
+
+      <!-- PHOTO 4: Bottom — Open paddocks -->
+      <div class="photo-item g-bot">
+        <div class="photo-ph ph-4">
+          <div class="ph-icon-wrap">🌾</div>
+          <p class="ph-label">Open Paddocks</p>
+          <span class="ph-sub">Add photo here</span>
+        </div>
+        <div class="photo-cap">
+          <h4>Free-Range Space</h4>
+          <p>Natural open environment</p>
+        </div>
+      </div>
+
+      <!-- PHOTO 5: Bottom — Organic feed -->
+      <div class="photo-item g-bot">
+        <div class="photo-ph ph-5">
+          <div class="ph-icon-wrap">🌿</div>
+          <p class="ph-label">Organic Feed</p>
+          <span class="ph-sub">Add photo here</span>
+        </div>
+        <div class="photo-cap">
+          <h4>Certified Organic Feed</h4>
+          <p>No additives, no hormones</p>
+        </div>
+      </div>
+
+    </div>
 
   <!-- ORDER PROCESS -->
   <section class="section section-alt" id="order">
